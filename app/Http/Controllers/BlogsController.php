@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Blogsrequest;
 use App\Models\Blog;
 use Illuminate\Http\Request;
 
@@ -18,14 +19,17 @@ class BlogsController extends Controller
         return view('blogs.create');
     }
 
-    public function store(Request $request)
+    public function store(Blogsrequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'description' => 'required',
+        // ]);
 
-        Blog::create($request->all());
+        $data = $request->validated();
+
+        Blog::create($data);
+        // Blog::create($request->all());
         return redirect()->route('blogs.index');
     }
 
@@ -35,10 +39,12 @@ class BlogsController extends Controller
         return view('blogs.edit', compact('blogs'));
     }
 
-    public function update(Request $request, Blog $blogs)
+    public function update(Blogsrequest $request, Blog $blogs)
     {
+        $data = $request->validated();
+        $blogs->update($data);
 
-        $blogs->update($request->all());
+        // $blogs->update($request->all());
         return redirect()->route('blogs.index');
     }
 

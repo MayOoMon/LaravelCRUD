@@ -27,10 +27,16 @@
       <div class="form-group">
         <label for="exampleInputEmail1">Name</label>
         <input type="text" class="form-control" name="name" value="{{$blogs->name}}">
+        @if($errors->has('name'))
+        <div class="text-danger" {{$errors->first('name')}}>Name is require.</div>
+        @endif
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Description</label>
         <input type="text" class="form-control" name="description" value="{{$blogs->description}}">
+        @if($errors->has('description'))
+        <div class="text-danger" {{$errors->first('description')}}>description is require.</div>
+        @endif
       </div>
       <div>
         <a href="{{route('blogs.index')}}" class="btn btn-success mt-3">back</a>

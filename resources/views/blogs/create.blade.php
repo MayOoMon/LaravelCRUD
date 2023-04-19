@@ -39,7 +39,7 @@
         @endif
       </div>
       <div class="mt-5">
-        <a href="" class="btn btn-success">back</a>
+        <a href="{{route('blogs.index')}}" class="btn btn-success">back</a>
         <button type="submit" class="btn btn-success">Add</button>
       </div>
 

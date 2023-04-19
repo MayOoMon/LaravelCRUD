@@ -9,17 +9,18 @@ use Hamcrest\Description;
 
 class BlogController extends Controller
 {
-    /**
+    /** 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $data = Blog::all();
+        // $data = Blog::all();
+        $data = Blog::paginate(5);
         // dd($data);
 
-        return view('blog.index', compact('data'));
+        return view('backend.blog.index', compact('data'));
     }
 
     /**
@@ -29,7 +30,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blog.create');
+        return view('backend.blog.create');
     }
 
     /**
@@ -63,7 +64,7 @@ class BlogController extends Controller
     public function show($id)
     {
         $result = Blog::where('id', $id)->first();
-        return view('blog.show', compact('result'));
+        return view('backend.blog.show', compact('result'));
     }
 
     /**
@@ -76,7 +77,7 @@ class BlogController extends Controller
     {
         $result = Blog::where('id', $id)->first();
         //dd($result->all());
-        return view('blog.edit', compact('result'));
+        return view('backend.blog.edit', compact('result'));
     }
 
     /**
